@@ -9,7 +9,7 @@ public class RayCastShooting : MonoBehaviour {
 
     public GameObject gun;
     public ParticleSystem muzzleFlash;
-    public GameObject impactEffect;
+    public ParticleSystem impactEffect;
 	// Use this for initialization
 	void Start () {
 		
@@ -35,6 +35,7 @@ public class RayCastShooting : MonoBehaviour {
                 target.TakeDamage(damage);
             }
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impactEffect, 3);
         }
     }
 }

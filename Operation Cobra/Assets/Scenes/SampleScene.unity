@@ -138,7 +138,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 106068764}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 0.099999994, y: 0.5000005, z: 0.10000011}
   m_Children: []
   m_Father: {fileID: 1257420265}
@@ -737,6 +737,11 @@ Transform:
 --- !u!1 &434580266 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9,
+    type: 2}
+  m_PrefabInternal: {fileID: 434580263}
+--- !u!198 &434580268 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800004, guid: 0438351a6e6422d43a09930e9be00ee9,
     type: 2}
   m_PrefabInternal: {fileID: 434580263}
 --- !u!1 &446221736
@@ -1736,6 +1741,27 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &1083489848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 141658, guid: 0f599fa355e018c47bd698bd6bdf7e90,
+    type: 2}
+  m_PrefabInternal: {fileID: 247633393}
+--- !u!114 &1083489849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1083489848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4eb60213a13af41902888db6fb1b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  range: 20
+  gun: {fileID: 1739386143}
+  muzzleFlash: {fileID: 0}
+  impactEffect: {fileID: 434580268}
 --- !u!4 &1131690201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4471613377008970, guid: ce816f2e6abb0504092c23ed9b970dfd,
@@ -2219,7 +2245,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467622585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.5}
   m_Children:
   - {fileID: 247633394}
@@ -2484,6 +2510,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1739386143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1739386144}
+  m_Layer: 0
+  m_Name: BulletExit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1739386144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739386143}
+  m_LocalRotation: {x: 0, y: 0.70710677, z: 0.70710677, w: 0}
+  m_LocalPosition: {x: 0, y: 101.19396, z: 48.000027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 247633394}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 270, y: -90, z: -90}
 --- !u!1 &1774758874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,7 +2736,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1833992560}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd4eb60213a13af41902888db6fb1b42, type: 3}
   m_Name: 

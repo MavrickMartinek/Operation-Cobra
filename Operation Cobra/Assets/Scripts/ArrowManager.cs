@@ -6,9 +6,29 @@ public class ArrowManager : MonoBehaviour {
 
     //private OVRPlugin.p
 
+    public static ArrowManager instance;
+
     private GameObject currentArrow;
 
     public GameObject arrowPrefab;
+
+    public GameObject stringAttachPoint;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null;
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -39,5 +59,10 @@ public class ArrowManager : MonoBehaviour {
             //collision.gameObject.GetComponent<>().inHand = true;
             collision.gameObject.GetComponent<Bow>().inHand = true;
         }
+    }
+
+    public void AttachBowToArrow()
+    {
+        currentArrow.transform.transform.parent = stringAttachPoint.transform;
     }
 }

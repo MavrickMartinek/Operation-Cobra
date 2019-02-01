@@ -14,8 +14,8 @@ public class Arrow : MonoBehaviour {
 		
 	}
 
-    void OnTriggeredEntered()
+    void OnTriggerEntered()
     {
-
+        ArrowManager.instance.AttachBowToArrow();
     }
 }

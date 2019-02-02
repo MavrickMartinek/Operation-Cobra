@@ -13,12 +13,12 @@ public class Pickup : MonoBehaviour {
 	void Update () {
 		
 	}
-
+    //Detects collision.
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Weapon")
+        if(collision.gameObject.tag == "Weapon") //Checks if object touched is weapon.
         {
-            collision.transform.parent = transform;
+            collision.transform.parent = transform; //Transfers weapon to hand.
             collision.transform.localScale = transform.localScale;
             collision.transform.localPosition = transform.localPosition;
            // collision.rigidbody.detectCollisions = false;

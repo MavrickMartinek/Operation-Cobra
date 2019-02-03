@@ -22,7 +22,7 @@ public class Pickup : MonoBehaviour {
             collision.transform.localScale = transform.localScale;
             collision.transform.localPosition = transform.localPosition;
            // collision.rigidbody.detectCollisions = false;
-            collision.gameObject.GetComponent<RayCastShooting>().inHand = true;
+            collision.gameObject.GetComponent<Handgun>().inHand = true;
         }
     }
 }

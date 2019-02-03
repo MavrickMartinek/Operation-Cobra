@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RayCastShooting : MonoBehaviour {
+public class Handgun : MonoBehaviour {
 
     public float damage;
     public float range;

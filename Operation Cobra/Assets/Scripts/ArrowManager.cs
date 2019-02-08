@@ -13,6 +13,10 @@ public class ArrowManager : MonoBehaviour {
     public GameObject arrowPrefab;
 
     public GameObject stringAttachPoint;
+    public GameObject arrowStartPoint;
+    public GameObject stringStartPoint;
+
+    private bool isAttached = false;
 
     void Awake()
     {
@@ -32,23 +36,62 @@ public class ArrowManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
-		
+        AttachArrow();
+        pullString();
 	}
 
-    /*public void AttachArrow()
+    private void pullString()
+    {
+        if (isAttached)
+        {
+            float dist = (stringStartPoint.transform.position - OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote)).magnitude;
+            stringAttachPoint.transform.localPosition = stringStartPoint.transform.localPosition + new Vector3(5f * dist, 0f, 0f);
+
+            if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+            {
+                Fire();
+            }
+        }
+    }
+
+    private void Fire()
+    {
+        float dist = (stringStartPoint.transform.position - OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote)).magnitude;
+
+        currentArrow.transform.parent = null;
+        currentArrow.GetComponent<Arrow>().hasBeenFired();
+
+        Rigidbody r = currentArrow.GetComponent<Rigidbody>();
+        r.velocity = currentArrow.transform.forward * 20f * dist;
+        r.useGravity = true;
+
+        currentArrow.GetComponent<Collider>().isTrigger = false;
+
+        stringAttachPoint.transform.position = stringStartPoint.transform.position;
+
+        currentArrow = null;
+        isAttached = false;
+    }
+
+    public void AttachArrow()
     {
         if (currentArrow == null)
         {
             currentArrow = Instantiate(arrowPrefab);
+            currentArrow.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote);
+            currentArrow.transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
+            currentArrow.transform.localPosition = new Vector3(0f, 0f, 0.342f);
+            currentArrow.transform.localRotation = Quaternion.identity;
         }
-    }*/
+    }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bow")
         {
@@ -59,10 +102,14 @@ public class ArrowManager : MonoBehaviour {
             //collision.gameObject.GetComponent<>().inHand = true;
             collision.gameObject.GetComponent<Bow>().inHand = true;
         }
-    }
+    }*/
 
     public void AttachBowToArrow()
     {
-        currentArrow.transform.transform.parent = stringAttachPoint.transform;
+        currentArrow.transform.parent = stringAttachPoint.transform;
+        currentArrow.transform.localPosition = arrowStartPoint.transform.localPosition;
+        currentArrow.transform.rotation = arrowStartPoint.transform.rotation;
+
+        isAttached = true;
     }
 }

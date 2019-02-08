@@ -1635,7 +1635,12 @@ public static class OVRInput
 		return isValid;
 	}
 
-	private abstract class OVRControllerBase
+    public static Vector3 GetLocalControllerPosition()
+    {
+        throw new NotImplementedException();
+    }
+
+    private abstract class OVRControllerBase
 	{
 		public class VirtualButtonMap
 		{

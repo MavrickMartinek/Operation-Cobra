@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour {
 
+    private bool isAttached = false;
+
+    private bool isFired = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,11 +15,33 @@ public class Arrow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (isFired)
+        {
+            transform.LookAt(transform.position + transform.GetComponent<Rigidbody>().velocity);
+        }
 	}
+
+    public void hasBeenFired()
+    {
+        isFired = true;
+    }
+
+    void OnTriggerStay()
+    {
+        AttachArrow();
+    }
 
     void OnTriggerEntered()
     {
-        ArrowManager.instance.AttachBowToArrow();
+        AttachArrow();
+    }
+
+    private void AttachArrow()
+    {
+        if(!isAttached && OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            ArrowManager.instance.AttachBowToArrow();
+            isAttached = true;
+        }
     }
 }

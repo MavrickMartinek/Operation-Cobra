@@ -49,13 +49,7 @@ public class Handgun : MonoBehaviour {
                 Shoot();
             }
         }
-        //Checks if side button is pressed.
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) & inHand)
-        {
-            inHand = false; 
-            this.transform.parent = null; //Removes gun from parent/hand. 
-            this.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f); //Corrects gun scale as it leaves hand.
-        }
+       
     }
     //Handles shooting.
     void Shoot()

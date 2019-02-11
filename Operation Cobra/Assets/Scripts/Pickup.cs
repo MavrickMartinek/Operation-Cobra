@@ -4,25 +4,64 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    private bool inHand;
+    private Collider _Weapon;
+    // Use this for initialization
+    void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    //Detects collision.
-    private void OnCollisionEnter(Collision collision)
+
+    // Update is called once per frame
+    void Update()
     {
-        if(collision.gameObject.tag == "Weapon") //Checks if object touched is weapon.
+        if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger) & inHand)
         {
-            collision.transform.parent = transform; //Transfers weapon to hand.
-            collision.transform.localScale = transform.localScale;
-            collision.transform.localPosition = transform.localPosition;
-           // collision.rigidbody.detectCollisions = false;
-            collision.gameObject.GetComponent<Handgun>().inHand = true;
+
+            _Weapon.transform.parent = null;
+            _Weapon.gameObject.GetComponent<Handgun>().inHand = false;
+            inHand = false;
+
+            //   _Weapon.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f); //Corrects gun scale as it leaves hand.
+            _Weapon.transform.position += new Vector3(0.1f, 0.1f, 0.1f);
+            //Invoke("ToggleInHand", 1f);
+            Debug.Log("Let go");
+        }
+
+        if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            _Weapon.transform.position = new Vector3(1f,1.1f,2f);
         }
     }
+    //Detects if hand is in proximity of weapon. 
+    private void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.tag == "Weapon")
+        {
+            Debug.Log("Collision");
+        }
+        if (collision.gameObject.tag == "Weapon" & OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) & !inHand) //Checks if object touched is weapon.
+        {
+            _Weapon = collision;
+            //inHand = collision.gameObject.GetComponent<Handgun>().inHand;
+            _Weapon.transform.parent = transform; //Transfers weapon to hand.
+           // _Weapon.transform.localScale = transform.localScale;
+           // _Weapon.transform.localPosition = transform.localPosition;
+            // collision.rigidbody.detectCollisions = false;
+            inHand = true;
+            _Weapon.gameObject.GetComponent<Handgun>().inHand = inHand;
+        }
+    }
+    private void ToggleInHand()
+    {
+        if (inHand)
+        {
+            inHand = false;
+        }
+        else if (!inHand)
+        {
+            inHand = true;
+        }
+    }
+
 }
+

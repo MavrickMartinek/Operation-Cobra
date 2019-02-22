@@ -16,11 +16,12 @@ public class Handgun : MonoBehaviour {
     public GameObject gun;
     public ParticleSystem muzzleFlash;
     public ParticleSystem impactEffect;
+    private Animator _Anim;
 
     private Vector3 properRotation;
 	// Use this for initialization
 	void Start () {
-		
+        _Anim = this.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -28,16 +29,22 @@ public class Handgun : MonoBehaviour {
 
         if (inHand)
         {
-            this.transform.localRotation = GameObject.Find("Right Hand").transform.localRotation; //Matches gun rotation to hand.
-            this.transform.localRotation *= Quaternion.Euler(-90, 180, 0); //Offsets gun rotation on hand.
-            this.transform.localPosition = GameObject.Find("Right Hand").transform.localPosition; //Matches gun postition to hand.
-            this.transform.localPosition += new Vector3(0f, 0.25f, 0.75f); //Offsets gun location on hand.
-            this.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f); //Corects gun scale.
+            this.transform.localRotation = this.transform.parent.localRotation; //Matches gun rotation to hand.
+            this.transform.localRotation *= Quaternion.Euler(90, -90, -90); //Offsets gun rotation on hand.
+            this.transform.localPosition = this.transform.parent.localPosition; //Matches gun postition to hand.
+            this.transform.localPosition += new Vector3(0.03f, 0.01f, 0.06f); //Offsets gun location on hand.
+            this.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f); //Corects gun scale.
         }
-        
+
         if (shotCounter > 0)
         {
+            _Shot = true;
             shotCounter -= Time.deltaTime;
+        }
+        else if (shotCounter < shotDelay)
+        {
+            _Shot = false;
+            _Anim.SetBool("HasFired", false);
         }
 
         //Checks if trigger is pressed.
@@ -48,6 +55,10 @@ public class Handgun : MonoBehaviour {
                 shotCounter = shotDelay;
                 Shoot();
             }
+        }
+        else
+        {
+           // _Anim.SetBool("HasFired", false);
         }
        
     }
@@ -64,7 +75,8 @@ public class Handgun : MonoBehaviour {
                 target.TakeDamage(damage);
             }
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); //Create hit particle effect. 
-
+            
+            _Anim.SetBool("HasFired", true);
         }
     }
 }

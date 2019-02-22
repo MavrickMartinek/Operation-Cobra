@@ -14,7 +14,8 @@ public class Pickup : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger) & inHand)
+        //Drop weapon
+        if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger) & !OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) & inHand)
         {
 
             _Weapon.transform.parent = null;
@@ -44,7 +45,7 @@ public class Pickup : MonoBehaviour {
             _Weapon = collision;
             //inHand = collision.gameObject.GetComponent<Handgun>().inHand;
             _Weapon.transform.parent = transform; //Transfers weapon to hand.
-           // _Weapon.transform.localScale = transform.localScale;
+           //_Weapon.transform.localScale = transform.localScale;
            // _Weapon.transform.localPosition = transform.localPosition;
             // collision.rigidbody.detectCollisions = false;
             inHand = true;

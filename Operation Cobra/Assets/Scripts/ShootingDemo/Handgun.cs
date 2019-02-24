@@ -12,8 +12,15 @@ public class Handgun : MonoBehaviour {
     private bool _Shot = false;
 
     public bool inHand = false;
+    public bool automaticFire;
+    public byte maxAmmo;
+    public byte currentAmmo;
 
-    public GameObject gun;
+    public Vector3 postionCorrection;
+    public Quaternion rotationCorrection;
+    public Vector3 scaleCorrection;
+
+    public GameObject bulletExit;
     public ParticleSystem muzzleFlash;
     public ParticleSystem impactEffect;
     private Animator _Anim;
@@ -30,10 +37,13 @@ public class Handgun : MonoBehaviour {
         if (inHand)
         {
             this.transform.localRotation = this.transform.parent.localRotation; //Matches gun rotation to hand.
-            this.transform.localRotation *= Quaternion.Euler(90, -90, -90); //Offsets gun rotation on hand.
+            // this.transform.localRotation *= Quaternion.Euler(90, -90, -90); //Offsets gun rotation on hand.
+            this.transform.localRotation *= rotationCorrection;
             this.transform.localPosition = this.transform.parent.localPosition; //Matches gun postition to hand.
-            this.transform.localPosition += new Vector3(0.03f, 0.01f, 0.06f); //Offsets gun location on hand.
-            this.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f); //Corects gun scale.
+            //  this.transform.localPosition += new Vector3(0.03f, 0.01f, 0.06f); //Offsets gun location on hand.
+            this.transform.localPosition += postionCorrection;
+            //  this.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f); //Corects gun scale.
+            this.transform.localScale += scaleCorrection;
         }
 
         if (shotCounter > 0)
@@ -47,14 +57,15 @@ public class Handgun : MonoBehaviour {
             _Anim.SetBool("HasFired", false);
         }
 
-        //Checks if trigger is pressed.
-        if (!_Shot & inHand & OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetKeyDown("mouse 0"))
-        {
-            if (shotCounter <= 0)
+        //Checks if gun is in hand and trigger is pressed.
+        if (inHand & OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetKeyDown("mouse 0"))
+        {   //Checks if gun should be fired according to fire rate and if its automatic or not
+            if ((!automaticFire & !_Shot) | (automaticFire & shotCounter <= 0) & shotCounter <= 0 & currentAmmo > 0)
             {
                 shotCounter = shotDelay;
                 Shoot();
             }
+            
         }
         else
         {
@@ -66,7 +77,7 @@ public class Handgun : MonoBehaviour {
     void Shoot()
     {
         RaycastHit hit; 
-        if (Physics.Raycast(gun.transform.position, gun.transform.forward, out hit, range))
+        if (Physics.Raycast(bulletExit.transform.position, bulletExit.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
             Target target = hit.transform.GetComponent<Target>();

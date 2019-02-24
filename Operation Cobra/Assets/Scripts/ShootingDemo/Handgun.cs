@@ -24,11 +24,12 @@ public class Handgun : MonoBehaviour {
     public ParticleSystem muzzleFlash;
     public ParticleSystem impactEffect;
     private Animator _Anim;
-
+    private OVRInput.Button inputHand;
+    private bool ranOnce = false;
     private Vector3 properRotation;
 	// Use this for initialization
 	void Start () {
-        _Anim = this.GetComponent<Animator>();
+        _Anim = this.GetComponent<Animator>();  
 	}
 	
 	// Update is called once per frame
@@ -36,14 +37,22 @@ public class Handgun : MonoBehaviour {
 
         if (inHand)
         {
-            this.transform.localRotation = this.transform.parent.localRotation; //Matches gun rotation to hand.
+            this.transform.localRotation = (this.transform.parent.localRotation * rotationCorrection); //Matches gun rotation to hand + offets it.
             // this.transform.localRotation *= Quaternion.Euler(90, -90, -90); //Offsets gun rotation on hand.
-            this.transform.localRotation *= rotationCorrection;
             this.transform.localPosition = this.transform.parent.localPosition; //Matches gun postition to hand.
             //  this.transform.localPosition += new Vector3(0.03f, 0.01f, 0.06f); //Offsets gun location on hand.
             this.transform.localPosition += postionCorrection;
             //  this.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f); //Corects gun scale.
-            this.transform.localScale += scaleCorrection;
+            this.transform.localScale = scaleCorrection;
+            if (!ranOnce)
+            {
+                checkInput();
+                ranOnce = true;
+            }
+        }
+        else if (!inHand)
+        {
+            ranOnce = false;
         }
 
         if (shotCounter > 0)
@@ -58,18 +67,14 @@ public class Handgun : MonoBehaviour {
         }
 
         //Checks if gun is in hand and trigger is pressed.
-        if (inHand & OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetKeyDown("mouse 0"))
-        {   //Checks if gun should be fired according to fire rate and if its automatic or not
-            if ((!automaticFire & !_Shot) | (automaticFire & shotCounter <= 0) & shotCounter <= 0 & currentAmmo > 0)
+        if (inHand & (!automaticFire & OVRInput.GetDown(inputHand) & !_Shot) | (automaticFire & OVRInput.Get(inputHand)))
+        {   
+            if (shotCounter <= 0 & currentAmmo > 0)
             {
-                shotCounter = shotDelay;
-                Shoot();
+                    shotCounter = shotDelay;
+                    Shoot();
+                
             }
-            
-        }
-        else
-        {
-           // _Anim.SetBool("HasFired", false);
         }
        
     }
@@ -88,6 +93,19 @@ public class Handgun : MonoBehaviour {
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); //Create hit particle effect. 
             
             _Anim.SetBool("HasFired", true);
+            currentAmmo -= 1;
+        }
+    }
+    //Checks which hand is used
+    void checkInput()
+    {
+        if (this.transform.parent.name == "HandRight")
+        {
+            inputHand = OVRInput.Button.SecondaryIndexTrigger;
+        }
+        else if (this.transform.parent.name == "HandLeft")
+        {
+            inputHand = OVRInput.Button.PrimaryIndexTrigger;
         }
     }
 }

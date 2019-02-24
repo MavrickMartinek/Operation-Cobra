@@ -6,16 +6,24 @@ public class Pickup : MonoBehaviour {
 
     private bool inHand;
     private Collider _Weapon;
+    private OVRInput.Button inputHand;
     // Use this for initialization
     void Start () {
-		
-	}
+        if (this.name == "HandRight")
+        {
+            inputHand = OVRInput.Button.SecondaryHandTrigger;
+        }
+        else if (this.name == "HandLeft")
+        {
+            inputHand = OVRInput.Button.PrimaryHandTrigger;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
         //Drop weapon
-        if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger) & !OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) & inHand)
+        if (OVRInput.GetUp(inputHand) & !OVRInput.GetDown(inputHand) & inHand)
         {
 
             _Weapon.transform.parent = null;
@@ -40,7 +48,7 @@ public class Pickup : MonoBehaviour {
         {
             Debug.Log("Collision");
         }
-        if (collision.gameObject.tag == "Weapon" & OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) & !inHand) //Checks if object touched is weapon.
+        if (collision.gameObject.tag == "Weapon" & OVRInput.GetDown(inputHand) & !inHand) //Checks if object touched is weapon.
         {
             _Weapon = collision;
             //inHand = collision.gameObject.GetComponent<Handgun>().inHand;

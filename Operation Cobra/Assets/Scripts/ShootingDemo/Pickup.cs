@@ -35,11 +35,6 @@ public class Pickup : MonoBehaviour {
             //Invoke("ToggleInHand", 1f);
             Debug.Log("Let go");
         }
-
-        if (OVRInput.GetDown(OVRInput.Button.One))
-        {
-            _Weapon.transform.position = new Vector3(1f,1.1f,2f);
-        }
     }
     //Detects if hand is in proximity of weapon. 
     private void OnTriggerStay(Collider collision)

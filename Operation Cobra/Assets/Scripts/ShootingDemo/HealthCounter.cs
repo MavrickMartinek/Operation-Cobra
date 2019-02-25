@@ -15,7 +15,7 @@ public class HealthCounter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        _Health = associatedPlayer.GetComponent<PlayerStat>().playerHealth;
+        _Health = associatedPlayer.GetComponent<Health>()._Health;
         GetComponent<TextMesh>().text = _Health.ToString();
         if (_Health <= 0)
         {

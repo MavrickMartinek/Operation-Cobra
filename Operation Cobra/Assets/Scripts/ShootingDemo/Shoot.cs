@@ -38,7 +38,7 @@ public class Shoot : MonoBehaviour {
         if (Physics.Raycast(bulletExit.transform.position, bulletExit.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
-            Target target = hit.transform.GetComponent<Target>();
+            Health target = hit.transform.GetComponent<Health>();
             if (target != null)
             {
                 target.TakeDamage(damage);

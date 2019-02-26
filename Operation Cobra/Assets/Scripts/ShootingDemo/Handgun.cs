@@ -84,8 +84,8 @@ public class Handgun : MonoBehaviour {
         {
             this._Anim.SetBool("IsEmpty", false);
         }
-
-        if (this.inHand & OVRInput.GetDown(OVRInput.Button.One) & this.currentAmmo == 0)
+        //Reload
+        if (this.inHand & ((inRightHand & OVRInput.GetDown(OVRInput.Button.One) | (!inRightHand & OVRInput.GetDown(OVRInput.Button.Three)))) & this.currentAmmo == 0)
         {
             this.currentAmmo = this.maxAmmo;
         }
@@ -115,11 +115,13 @@ public class Handgun : MonoBehaviour {
         {
             this.inputHand = OVRInput.Button.SecondaryIndexTrigger;
             this.positionCorrection = positionCorrectionR;
+            inRightHand = true;
         }
         else if (this.transform.parent.name == "HandLeft")
         {
             this.inputHand = OVRInput.Button.PrimaryIndexTrigger;
             this.positionCorrection = positionCorrectionL;
+            inRightHand = false;
         }
     }
 }

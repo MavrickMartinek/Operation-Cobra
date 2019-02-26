@@ -161,10 +161,11 @@ public class OVRPlayerController : MonoBehaviour
 	void Awake()
 	{
 		Controller = gameObject.GetComponent<CharacterController>();
+        Controller.detectCollisions = false;
 
 		if (Controller == null)
 			Debug.LogWarning("OVRPlayerController: No CharacterController attached.");
-
+        
 		// We use OVRCameraRig to set rotations to cameras,
 		// and to be influenced by rotation
 		OVRCameraRig[] CameraRigs = gameObject.GetComponentsInChildren<OVRCameraRig>();

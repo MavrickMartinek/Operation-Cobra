@@ -16,9 +16,9 @@ public class FruitSpawner : MonoBehaviour {
         while(true)
         {
             GameObject go = Instantiate(fruitPre[Random.Range(0, fruitPre.Length)]);
-            Rigidbody temp = go.GetComponent<RigidBody>();
+            Rigidbody temp = go.GetComponent<Rigidbody>();
             temp.velocity = new Vector3(0f, 5f, .5f);
-            temp.angularVelocity = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f);
+            temp.angularVelocity = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
             temp.useGravity = true;
             Vector3 pos = transform.position;
             pos.x += Random.Range(-1f, 1f);

@@ -1,8 +1,13 @@
-﻿using System.Collections;
+﻿/*
+ * Author: Mavrick Martinek
+ * Purpose: Controls gun behaviour. 
+ * 
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Handgun : MonoBehaviour {
+public class Weapon : MonoBehaviour {
 
     public float damage;
     public float range;
@@ -38,17 +43,17 @@ public class Handgun : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        //Checks if the gun is in the players' hand.
         if (inHand)
-        {
+        {   
             if (!ranOnce)
             {
-                checkInput();
+                checkInput(); //Checks in which hand the weapon is being held. 
                 ranOnce = true;
             }
             this.transform.localRotation = (this.transform.parent.localRotation * rotationCorrection); //Matches gun rotation to hand + offets it.
             this.transform.localPosition = (this.transform.parent.localPosition + positionCorrection); //Matches gun postition to hand + offsets it.
-            this.transform.localScale = scaleCorrection;
+            this.transform.localScale = scaleCorrection; //Corrects the weapon scale.
         }
         else if (!inHand)
         {
@@ -75,7 +80,7 @@ public class Handgun : MonoBehaviour {
                 this.Shoot();
             }
         }
-
+        //Sets the animation of the weapon based on if it's empty.
         if(this.currentAmmo <= 0)
         {
             this._Anim.SetBool("IsEmpty", true);
@@ -85,7 +90,7 @@ public class Handgun : MonoBehaviour {
             this._Anim.SetBool("IsEmpty", false);
         }
         //Reload
-        if (this.inHand & ((inRightHand & OVRInput.GetDown(OVRInput.Button.One) | (!inRightHand & OVRInput.GetDown(OVRInput.Button.Three)))) & this.currentAmmo == 0)
+        if (this.inHand & ((inRightHand & OVRInput.GetDown(OVRInput.Button.One) | (!inRightHand & OVRInput.GetDown(OVRInput.Button.Three)))))
         {
             this.currentAmmo = this.maxAmmo;
         }
@@ -100,17 +105,18 @@ public class Handgun : MonoBehaviour {
             Health target = hit.transform.GetComponent<Health>();
             if (target != null)
             {
-                target.TakeDamage(damage);
+                target.TakeDamage(damage); //Deals damage to target.
             }
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); //Create hit particle effect. 
             
-            _Anim.SetBool("HasFired", true);
-            this.currentAmmo -= 1;
+            _Anim.SetBool("HasFired", true); //Plays fire animation for gun.
+            this.currentAmmo -= 1; //Drains ammunition.
         }
     }
     //Checks which hand is used
     void checkInput()
     {
+        //Checks if weapon is in right or left hand; sets the inputs accordingly. 
         if (this.transform.parent.name == "HandRight")
         {
             this.inputHand = OVRInput.Button.SecondaryIndexTrigger;

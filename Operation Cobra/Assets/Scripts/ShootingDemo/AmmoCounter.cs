@@ -15,7 +15,7 @@ public class AmmoCounter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        ammoCount = associatedWeapon.GetComponent<Handgun>().currentAmmo;
+        ammoCount = associatedWeapon.GetComponent<Weapon>().currentAmmo;
         GetComponent<TextMesh>().text = ammoCount.ToString();
         if (ammoCount <= 0)
         {

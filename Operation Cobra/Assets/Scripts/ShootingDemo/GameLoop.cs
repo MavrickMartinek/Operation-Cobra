@@ -16,7 +16,7 @@ public class GameLoop : MonoBehaviour {
     private float playerHealth;
     public static int _Score;
     public static bool gameRunning;
-    public static bool practiceMode;
+    public static bool practiceMode = true;
     public static bool gameWon;
 	// Use this for initialization
 	void Start () {

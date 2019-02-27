@@ -17,23 +17,16 @@ public class Pickup : MonoBehaviour {
         {
             inputHand = OVRInput.Button.PrimaryHandTrigger;
         }
+        inHand = _Weapon.gameObject.GetComponent<Weapon>().inHand;
     }
 
     // Update is called once per frame
     void Update()
     {
         //Drop weapon
-        if (OVRInput.GetUp(inputHand) & !OVRInput.GetDown(inputHand) & inHand)
+        if ((OVRInput.GetUp(inputHand) & !OVRInput.GetDown(inputHand) & inHand) | (!GameLoop.gameRunning & !GameLoop.gameWon & !GameLoop.practiceMode))
         {
-
-            _Weapon.transform.parent = null;
-            _Weapon.gameObject.GetComponent<Handgun>().inHand = false;
-            inHand = false;
-
-            //   _Weapon.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f); //Corrects gun scale as it leaves hand.
-            _Weapon.transform.position += new Vector3(0.1f, 0.1f, 0.1f);
-            //Invoke("ToggleInHand", 1f);
-            Debug.Log("Let go");
+            dropObject();
         }
     }
     //Detects if hand is in proximity of weapon. 
@@ -45,16 +38,22 @@ public class Pickup : MonoBehaviour {
         }
         if (collision.gameObject.tag == "Weapon" & OVRInput.GetDown(inputHand) & !inHand) //Checks if object touched is weapon.
         {
-            _Weapon = collision;
-            //inHand = collision.gameObject.GetComponent<Handgun>().inHand;
+            _Weapon = collision; //Sets the collision as the weapon.
             _Weapon.transform.parent = transform; //Transfers weapon to hand.
-           //_Weapon.transform.localScale = transform.localScale;
-           // _Weapon.transform.localPosition = transform.localPosition;
-            // collision.rigidbody.detectCollisions = false;
             inHand = true;
-            _Weapon.gameObject.GetComponent<Handgun>().inHand = inHand;
+            _Weapon.gameObject.GetComponent<Weapon>().inHand = inHand; //Tells the weapon script that it's in-hand.
         }
     }
+
+    private void dropObject()
+    {
+        _Weapon.transform.parent = null;
+        _Weapon.gameObject.GetComponent<Weapon>().inHand = false;
+        inHand = false;
+        _Weapon.transform.position += new Vector3(0.05f, 0.05f, 0.05f);
+        Debug.Log("Weapon dropped");
+    }
+
     private void ToggleInHand()
     {
         if (inHand)

@@ -1773,7 +1773,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 408898753}
-  - component: {fileID: 408898754}
   m_Layer: 0
   m_Name: BulletExit
   m_TagString: Untagged
@@ -1794,23 +1793,6 @@ Transform:
   m_Father: {fileID: 1725240639}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 180, y: -270, z: -180}
---- !u!114 &408898754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 408898752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb85a82f8a3f6d46ba3b657c5cbaf5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  range: 20
-  bulletExit: {fileID: 408898752}
-  muzzleFlash: {fileID: 0}
-  impactEffect: {fileID: 198320307722144790, guid: 53b22bf5656b1e048bab5c13445bcedf,
-    type: 2}
 --- !u!1 &418287649
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,11 +2929,10 @@ GameObject:
   - component: {fileID: 612400580}
   - component: {fileID: 612400579}
   - component: {fileID: 612400578}
-  - component: {fileID: 612400583}
   - component: {fileID: 612400584}
   m_Layer: 0
   m_Name: Cylinder (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3039,18 +3020,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &612400583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 612400577}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 779b5d82ff0da1447933e55196f89db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 6
 --- !u!114 &612400584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4199,7 +4168,7 @@ MonoBehaviour:
   maxAmmo: 12
   currentAmmo: 12
   positionCorrectionR: {x: 0.03, y: 0.01, z: 0.06}
-  positionCorrectionL: {x: 0, y: 0, z: 0}
+  positionCorrectionL: {x: -0.03, y: 0.01, z: 0.06}
   rotationCorrection: {x: 20, y: 0, z: 0, w: 20}
   scaleCorrection: {x: 0.0015, y: 0.0015, z: 0.0015}
   bulletExit: {fileID: 1739386143}
@@ -4406,11 +4375,10 @@ GameObject:
   - component: {fileID: 1230315744}
   - component: {fileID: 1230315743}
   - component: {fileID: 1230315742}
-  - component: {fileID: 1230315747}
   - component: {fileID: 1230315748}
   m_Layer: 0
   m_Name: Cylinder (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4498,18 +4466,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1230315747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1230315741}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 779b5d82ff0da1447933e55196f89db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 6
 --- !u!114 &1230315748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5385,11 +5341,10 @@ GameObject:
   - component: {fileID: 1631168467}
   - component: {fileID: 1631168466}
   - component: {fileID: 1631168465}
-  - component: {fileID: 1631168470}
   - component: {fileID: 1631168471}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5477,18 +5432,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1631168470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1631168464}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 779b5d82ff0da1447933e55196f89db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 6
 --- !u!114 &1631168471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5745,6 +5688,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.6250005
       objectReference: {fileID: 0}
+    - target: {fileID: 1521359243658718, guid: bb0cdbdcea3cf104da1b50d0457523a8, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb0cdbdcea3cf104da1b50d0457523a8, type: 2}
   m_IsPrefabAsset: 0
@@ -5753,6 +5700,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4704910437539226, guid: bb0cdbdcea3cf104da1b50d0457523a8,
     type: 2}
   m_PrefabInternal: {fileID: 1725240638}
+--- !u!1 &1725240640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1521359243658718, guid: bb0cdbdcea3cf104da1b50d0457523a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1725240638}
+--- !u!114 &1725240641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1725240640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb85a82f8a3f6d46ba3b657c5cbaf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  range: 20
+  bulletExit: {fileID: 408898752}
+  muzzleFlash: {fileID: 0}
+  impactEffect: {fileID: 198320307722144790, guid: 53b22bf5656b1e048bab5c13445bcedf,
+    type: 2}
 --- !u!1 &1739386143
 GameObject:
   m_ObjectHideFlags: 0
@@ -5909,11 +5878,10 @@ GameObject:
   - component: {fileID: 1774758877}
   - component: {fileID: 1774758876}
   - component: {fileID: 1774758875}
-  - component: {fileID: 1774758880}
   - component: {fileID: 1774758881}
   m_Layer: 0
   m_Name: Cylinder (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6001,18 +5969,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1774758880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1774758874}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 779b5d82ff0da1447933e55196f89db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 6
 --- !u!114 &1774758881
 MonoBehaviour:
   m_ObjectHideFlags: 0

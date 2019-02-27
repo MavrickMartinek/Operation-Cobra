@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour {
     public ParticleSystem impactEffect;
 
     private float shotCounter;
-    private float shotDelay = 1;
+    private float shotDelay = 0.5f;
     // Use this for initialization
     void Start () {
 		

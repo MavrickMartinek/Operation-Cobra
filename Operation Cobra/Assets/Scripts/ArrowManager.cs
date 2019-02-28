@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArrowManager : MonoBehaviour {
 
     //private OVRPlugin.p
+    public float damage;
 
     public static ArrowManager instance;
 
@@ -111,5 +112,17 @@ public class ArrowManager : MonoBehaviour {
         currentArrow.transform.rotation = arrowStartPoint.transform.rotation;
 
         isAttached = true;
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject == arrowPrefab)
+        {
+            Health target = col.gameObject.GetComponent<Health>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
+        }
     }
 }

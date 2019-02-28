@@ -7,6 +7,7 @@ public class Pickup : MonoBehaviour {
     private bool inHand;
     private Collider _Weapon;
     private OVRInput.Button inputHand;
+    private bool _Throwing;
     // Use this for initialization
     void Start () {
         if (this.name == "HandRight")
@@ -29,6 +30,15 @@ public class Pickup : MonoBehaviour {
             dropObject();
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (_Throwing)
+        {
+            Transform origin;
+
+        }
+    }
     //Detects if hand is in proximity of weapon. 
     private void OnTriggerStay(Collider collision)
     {
@@ -42,6 +52,14 @@ public class Pickup : MonoBehaviour {
             _Weapon.transform.parent = transform; //Transfers weapon to hand.
             inHand = true;
             _Weapon.gameObject.GetComponent<Weapon>().inHand = inHand; //Tells the weapon script that it's in-hand.
+        }
+
+        if(collision.gameObject.tag == "Pickup")
+        {
+            if (!collision.GetComponent<Ball>()._Thrown)
+            {
+                collision.transform.parent = this.gameObject.transform;
+            }
         }
     }
 

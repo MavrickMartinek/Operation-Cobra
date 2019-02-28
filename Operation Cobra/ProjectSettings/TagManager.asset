@@ -8,6 +8,7 @@ TagManager:
   - Bow
   - Floor
   - Enemy
+  - Pickup
   layers:
   - Default
   - TransparentFX

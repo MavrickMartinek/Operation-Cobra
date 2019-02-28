@@ -38,6 +38,7 @@ public class Ball : MonoBehaviour {
             {
                 ReadyToThrow();
             }
+
             /*else if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
             {
                 ToggleBounciness(0.2f);
@@ -50,7 +51,7 @@ public class Ball : MonoBehaviour {
             }*/
         }
 
-        if (this.transform.parent == null)
+       if (this.transform.parent == null)
         {
             if (_Thrown)
             {

@@ -7,7 +7,9 @@ public class Pickup : MonoBehaviour {
     private bool inHand;
     private Collider _Weapon;
     private OVRInput.Button inputHand;
+    private OVRTrackedRemote trackedObj;
     private bool _Throwing;
+    private Rigidbody rigidbody;
     // Use this for initialization
     void Start () {
         if (this.name == "HandRight")
@@ -35,8 +37,12 @@ public class Pickup : MonoBehaviour {
     {
         if (_Throwing)
         {
-            Transform origin;
+            rigidbody.velocity = this.GetComponent<Rigidbody>().velocity;
+            rigidbody.angularVelocity = (this.GetComponent<Rigidbody>().angularVelocity * 0.25f);
+            Debug.Log("Thrown");
+            rigidbody.maxAngularVelocity = rigidbody.angularVelocity.magnitude;
 
+            _Throwing = false;
         }
     }
     //Detects if hand is in proximity of weapon. 
@@ -59,17 +65,22 @@ public class Pickup : MonoBehaviour {
             if (!collision.GetComponent<Ball>()._Thrown)
             {
                 collision.transform.parent = this.gameObject.transform;
+                rigidbody = null;
             }
         }
     }
 
     private void dropObject()
     {
+        rigidbody = _Weapon.GetComponent<Rigidbody>();
         _Weapon.transform.parent = null;
+        _Throwing = true;
         _Weapon.gameObject.GetComponent<Weapon>().inHand = false;
         inHand = false;
         _Weapon.transform.position += new Vector3(0.05f, 0.05f, 0.05f);
+        _Weapon = null;
         Debug.Log("Weapon dropped");
+        
     }
 
     private void ToggleInHand()

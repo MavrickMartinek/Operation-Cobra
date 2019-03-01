@@ -63,13 +63,13 @@ public class ArrowManager : MonoBehaviour {
 
     private void Fire()
     {
-        float dist = (stringStartPoint.transform.position - OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote)).magnitude;
+        //float dist = (stringStartPoint.transform.position - OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote)).magnitude;
 
         currentArrow.transform.parent = null;
         currentArrow.GetComponent<Arrow>().hasBeenFired();
 
         Rigidbody r = currentArrow.GetComponent<Rigidbody>();
-        r.velocity = currentArrow.transform.forward * 20f * dist;
+        r.velocity = currentArrow.transform.forward * 10f;
         r.useGravity = true;
 
         currentArrow.GetComponent<Collider>().isTrigger = false;

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4214400239530306}
   - component: {fileID: 33878062726477866}
   - component: {fileID: 23348133461683918}
+  - component: {fileID: 54463567172233182}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1598129851253076}
   m_LocalRotation: {x: 0.6125261, y: -0.3532871, z: -0.6125261, w: 0.3532871}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.025, y: 0.025, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.26}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,3 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1598129851253076}
   m_Mesh: {fileID: 4300002, guid: 2a6e6a4d0066c3b49b19388ba40b96be, type: 3}
+--- !u!54 &54463567172233182
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598129851253076}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

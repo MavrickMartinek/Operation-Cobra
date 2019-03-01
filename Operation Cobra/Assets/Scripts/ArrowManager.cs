@@ -85,6 +85,7 @@ public class ArrowManager : MonoBehaviour {
         if (currentArrow == null)
         {
             currentArrow = Instantiate(arrowPrefab);
+            arrowPrefab.transform.localScale = new Vector3(0.01f, 0.01f, 0.26f);
             currentArrow.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote);
             currentArrow.transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
             currentArrow.transform.localPosition = new Vector3(0f, 0f, 0.342f);

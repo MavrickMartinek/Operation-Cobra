@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ArrowManager : MonoBehaviour {
 
-    //private OVRPlugin.p
+    private OVRTrackedRemote objTracked;
+    
     public float damage;
 
     public static ArrowManager instance;
@@ -51,7 +52,7 @@ public class ArrowManager : MonoBehaviour {
     {
         if (isAttached)
         {
-            float dist = (stringStartPoint.transform.position - OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote)).magnitude;
+            float dist = (stringStartPoint.transform.position - objTracked.transform.position).magnitude;
             stringAttachPoint.transform.localPosition = stringStartPoint.transform.localPosition + new Vector3(5f * dist, 0f, 0f);
 
             if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
@@ -63,16 +64,16 @@ public class ArrowManager : MonoBehaviour {
 
     private void Fire()
     {
-        //float dist = (stringStartPoint.transform.position - OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote)).magnitude;
+        float dist = (stringStartPoint.transform.position - objTracked.transform.position).magnitude;
 
         currentArrow.transform.parent = null;
         currentArrow.GetComponent<Arrow>().hasBeenFired();
 
         Rigidbody r = currentArrow.GetComponent<Rigidbody>();
-        r.velocity = currentArrow.transform.forward * 10f;
+        r.velocity = currentArrow.transform.forward * 20f * dist;
         r.useGravity = true;
 
-        currentArrow.GetComponent<Collider>().isTrigger = false;
+        //currentArrow.GetComponent<Collider>().isTrigger = false;
 
         stringAttachPoint.transform.position = stringStartPoint.transform.position;
 
@@ -115,7 +116,7 @@ public class ArrowManager : MonoBehaviour {
         isAttached = true;
     }
 
-    void OnCollisionEnter(Collision col)
+    /*void OnCollisionEnter(Collision col)
     {
         if(col.gameObject == arrowPrefab)
         {
@@ -125,5 +126,5 @@ public class ArrowManager : MonoBehaviour {
                 target.TakeDamage(damage);
             }
         }
-    }
+    }*/
 }

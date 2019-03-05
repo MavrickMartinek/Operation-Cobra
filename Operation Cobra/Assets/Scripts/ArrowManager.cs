@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ArrowManager : MonoBehaviour {
-
-    private OVRTrackedRemote objTracked;
     
     public float damage;
 
@@ -52,7 +50,7 @@ public class ArrowManager : MonoBehaviour {
     {
         if (isAttached)
         {
-            float dist = (stringStartPoint.transform.position - objTracked.transform.position).magnitude;
+            float dist = (stringStartPoint.transform.position - /*objTracked.transform.position*/).magnitude;
             stringAttachPoint.transform.localPosition = stringStartPoint.transform.localPosition + new Vector3(5f * dist, 0f, 0f);
 
             if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))

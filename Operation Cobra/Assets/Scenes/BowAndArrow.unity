@@ -701,6 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647b1c3fe208a4146b3d43cfb79f0bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objTracked: {fileID: 0}
   damage: 2
   arrowPrefab: {fileID: 1598129851253076, guid: 600adc909f9b6a5469c083e6e3d40761,
     type: 2}

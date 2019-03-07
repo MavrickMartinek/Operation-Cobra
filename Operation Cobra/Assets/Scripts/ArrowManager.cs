@@ -12,6 +12,7 @@ public class ArrowManager : MonoBehaviour {
 
     public GameObject arrowPrefab;
 
+    public GameObject rightController;
     public GameObject stringAttachPoint;
     public GameObject arrowStartPoint;
     public GameObject stringStartPoint;
@@ -50,7 +51,7 @@ public class ArrowManager : MonoBehaviour {
     {
         if (isAttached)
         {
-            float dist = (stringStartPoint.transform.position - /*objTracked.transform.position*/).magnitude;
+            float dist = (stringStartPoint.transform.position - rightController.transform.position).magnitude;
             stringAttachPoint.transform.localPosition = stringStartPoint.transform.localPosition + new Vector3(5f * dist, 0f, 0f);
 
             if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
@@ -62,7 +63,7 @@ public class ArrowManager : MonoBehaviour {
 
     private void Fire()
     {
-        float dist = (stringStartPoint.transform.position - objTracked.transform.position).magnitude;
+        float dist = (stringStartPoint.transform.position - rightController.transform.position).magnitude;
 
         currentArrow.transform.parent = null;
         currentArrow.GetComponent<Arrow>().hasBeenFired();
@@ -84,10 +85,12 @@ public class ArrowManager : MonoBehaviour {
         if (currentArrow == null)
         {
             currentArrow = Instantiate(arrowPrefab);
-            arrowPrefab.transform.localScale = new Vector3(0.01f, 0.01f, 0.26f);
+            currentArrow.transform.parent = rightController.transform;
+            //arrowPrefab.transform.localScale = new Vector3(0.01f, 0.01f, 0.26f);
             currentArrow.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote);
-            currentArrow.transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
+            //currentArrow.transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
             currentArrow.transform.localPosition = new Vector3(0f, 0f, 0.342f);
+            //currentArrow.transform.rotation = Quaternion.Euler(new Vector3(currentArrow.transform.eulerAngles.x, currentArrow.transform.eulerAngles.y + 180, currentArrow.transform.eulerAngles.z));
             currentArrow.transform.localRotation = Quaternion.identity;
         }
     }

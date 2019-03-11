@@ -11,7 +11,10 @@ public class Health : MonoBehaviour {
         _Health -= ammount;
         if (_Health <= 0f)
         {
-            Destroy(gameObject);
+            if (this.gameObject.name != "CenterEyeAnchor")
+            {
+                Destroy(gameObject);
+            }
         }
     }
     // Use this for initialization

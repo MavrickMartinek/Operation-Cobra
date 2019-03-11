@@ -12,7 +12,7 @@ public class GameLoop : MonoBehaviour {
     public int scoreGoal;
     private float _Timer;
     private GameObject playerObject;
-    private GameObject[] enemyObjects;
+    GameObject[] enemyObjects;
     private float playerHealth;
     public static int _Score;
     public static bool gameRunning;
@@ -20,32 +20,48 @@ public class GameLoop : MonoBehaviour {
     public static bool gameWon;
 	// Use this for initialization
 	void Start () {
-        playerObject = GameObject.Find("OVRPlayerController");
+        playerObject = GameObject.Find("CentreEyeController");
         playerHealth = playerObject.GetComponentInChildren<Health>()._Health;
         gameRunning = false;
         practiceMode = true;
-	}
+
+        enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
+  
+        foreach (GameObject obj in enemyObjects)
+        {
+            Debug.Log("object");
+            Debug.Log(obj.gameObject.name);
+        }
+        startGame();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if (gameRunning)
-        {
-            _Timer -= Time.deltaTime;
-        }
-        if (_Timer == 0f | _Score >= scoreGoal | playerHealth <= 0 | enemyObjects.Length <= 0)
-        {
-            endGame();
-        }
+		
+        /* if (_Timer == 0f | _Score >= scoreGoal | playerHealth <= 0 | enemyObjects.Length <= 0)
+         {
+             endGame();
+         }*/
 
-        for (int i = 0; i <= enemyObjects.Length; i++)
+       /* for (int i = 0; i <= this.enemyObjects.Length; i++)
         {
-            if (enemyObjects[i].GetComponent<Health>()._Health <= 0)
+            if (enemyObjects[i].gameObject.GetComponent<Health>()._Health <= 0)
             {
                 gameWon = true;
                 endGame();
             }
-        }
+        }*/
 	}
+
+    private void FixedUpdate()
+    {
+        if (gameRunning)
+        {
+            _Timer -= Time.deltaTime;
+        }
+        Debug.Log(_Timer);
+        //Debug.Log(enemyObjects[1].name);
+    }
     void startGame()
     {
         practiceMode = false;
@@ -53,8 +69,6 @@ public class GameLoop : MonoBehaviour {
         gameWon = false;
         playerHealth = 100;
         _Timer = timeLimit;
-
-       enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     void endGame()
@@ -79,6 +93,6 @@ public class GameLoop : MonoBehaviour {
 
     void loseGame()
     {
-
+        Debug.Log("Lost the game");
     }
 }

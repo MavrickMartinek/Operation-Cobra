@@ -69,7 +69,7 @@ public class ArrowManager : MonoBehaviour {
         currentArrow.GetComponent<Arrow>().hasBeenFired();
 
         Rigidbody r = currentArrow.GetComponent<Rigidbody>();
-        r.velocity = currentArrow.transform.forward * 20f * dist;
+        r.velocity = -currentArrow.transform.forward * 20f * dist;
         r.useGravity = true;
 
         //currentArrow.GetComponent<Collider>().isTrigger = false;
@@ -90,8 +90,8 @@ public class ArrowManager : MonoBehaviour {
             currentArrow.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote);
             //currentArrow.transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
             currentArrow.transform.localPosition = new Vector3(0f, 0f, 0.342f);
-            //currentArrow.transform.rotation = Quaternion.Euler(new Vector3(currentArrow.transform.eulerAngles.x, currentArrow.transform.eulerAngles.y + 180, currentArrow.transform.eulerAngles.z));
-            currentArrow.transform.localRotation = Quaternion.identity;
+            currentArrow.transform.localRotation = Quaternion.Euler(new Vector3(currentArrow.transform.eulerAngles.x, currentArrow.transform.eulerAngles.y + 180, currentArrow.transform.eulerAngles.z));
+            //currentArrow.transform.localRotation = Quaternion.identity;
         }
     }
 
@@ -111,6 +111,7 @@ public class ArrowManager : MonoBehaviour {
     public void AttachBowToArrow()
     {
         currentArrow.transform.parent = stringAttachPoint.transform;
+        //currentArrow.transform.localRotation = Quaternion.Euler(new Vector3(currentArrow.transform.eulerAngles.x, currentArrow.transform.eulerAngles.y + 180, currentArrow.transform.eulerAngles.z));
         currentArrow.transform.localPosition = arrowStartPoint.transform.localPosition;
         currentArrow.transform.rotation = arrowStartPoint.transform.rotation;
 

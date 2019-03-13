@@ -14,6 +14,7 @@ public class Health : MonoBehaviour {
             if (this.gameObject.name != "CenterEyeAnchor")
             {
                 Destroy(gameObject);
+                GameLoop._Score += 5;
             }
         }
     }

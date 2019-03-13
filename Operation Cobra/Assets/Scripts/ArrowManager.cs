@@ -6,6 +6,8 @@ public class ArrowManager : MonoBehaviour {
     
     public float damage;
 
+    private float score;
+
     public static ArrowManager instance;
 
     private GameObject currentArrow;
@@ -118,15 +120,16 @@ public class ArrowManager : MonoBehaviour {
         isAttached = true;
     }
 
-    /*void OnCollisionEnter(Collision col)
+    void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject == arrowPrefab)
+        if(col.gameObject == currentArrow)
         {
-            Health target = col.gameObject.GetComponent<Health>();
-            if (target != null)
-            {
-                target.TakeDamage(damage);
-            }
+            score += 1;
+            //Health target = col.gameObject.GetComponent<Health>();
+            //f (target != null)
+            //{
+                //target.TakeDamage(damage);
+            //}
         }
-    }*/
+    }
 }

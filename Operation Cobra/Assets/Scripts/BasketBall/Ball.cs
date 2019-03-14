@@ -7,11 +7,13 @@ public class Ball : MonoBehaviour {
     private Collider materialProps;
     private bool ranOnce;
     public bool _Thrown;
+    private bool inHand; 
 	// Use this for initialization
 	void Start () {
         materialProps = this.GetComponent<Collider>();
         ranOnce = false;
         _Thrown = false;
+ 
 	}
 	
 	// Update is called once per frame
@@ -39,16 +41,18 @@ public class Ball : MonoBehaviour {
                 ReadyToThrow();
             }
 
-            /*else if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
+            else if (inHand & OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
             {
+                inHand = false;
                 ToggleBounciness(0.2f);
                 _Thrown = true;
-                //this.transform.forward = this.transform.parent.GetComponent<Rigidbody>().velocity;
+                this.transform.LookAt(this.transform.position + this.transform.GetComponent<Rigidbody>().velocity);
+                this.transform.forward = this.transform.parent.GetComponent<Rigidbody>().velocity;
                 this.transform.parent = null;
                 GetComponent<Rigidbody>().AddForce(GameObject.Find("CenterEyeAnchor").transform.forward * 1f);
                 //this.transform.forward *= 2;
                 WaitUntilPickup();
-            }*/
+            }
         }
 
        if (this.transform.parent == null)
@@ -82,6 +86,7 @@ public class Ball : MonoBehaviour {
     {
         Debug.Log("Ready to throw");
         ToggleBounciness(0f);
+        inHand = true;
         this.transform.position = new Vector3(this.transform.parent.position.x, (this.transform.parent.position.y - 0.09f), this.transform.parent.position.z);
     }
 

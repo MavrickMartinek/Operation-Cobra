@@ -73,7 +73,8 @@ public class Weapon : MonoBehaviour {
 
         //Checks if gun is in hand and trigger is pressed.
         if (this.inHand & ((!this.automaticFire & OVRInput.GetDown(this.inputHand) & !_Shot) | (this.automaticFire & OVRInput.Get(this.inputHand))))
-        {   
+        {
+            Debug.Log("Shoot");
             if (shotCounter <= 0 & currentAmmo > 0)
             {
                 this.shotCounter = shotDelay;

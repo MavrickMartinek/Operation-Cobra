@@ -59,7 +59,7 @@ public class GameLoop : MonoBehaviour {
         {
             _Timer -= Time.deltaTime;
         }
-        Debug.Log(_Timer);
+        //Debug.Log(_Timer);
         //Debug.Log(enemyObjects[1].name);
     }
     void startGame()

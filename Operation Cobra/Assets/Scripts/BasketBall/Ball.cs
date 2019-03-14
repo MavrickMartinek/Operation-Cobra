@@ -5,11 +5,14 @@ using UnityEngine;
 public class Ball : MonoBehaviour {
 
     private Collider materialProps;
+    private Vector3 thrownLocation;
     private bool ranOnce;
     public bool _Thrown;
-    private bool inHand; 
-	// Use this for initialization
-	void Start () {
+    private bool inHand;
+    private float timerPos = 0.5f;
+    private float timer = 0.5f;
+    // Use this for initialization
+    void Start () {
         materialProps = this.GetComponent<Collider>();
         ranOnce = false;
         _Thrown = false;
@@ -44,14 +47,20 @@ public class Ball : MonoBehaviour {
             else if (inHand & OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
             {
                 inHand = false;
-                ToggleBounciness(0.2f);
+                ToggleBounciness(0.5f);
                 _Thrown = true;
-                this.transform.LookAt(this.transform.position + this.transform.GetComponent<Rigidbody>().velocity);
-                this.transform.forward = this.transform.parent.GetComponent<Rigidbody>().velocity;
                 this.transform.parent = null;
+                Rigidbody rigidbody = this.GetComponent<Rigidbody>();
+                rigidbody.isKinematic = false;
+                Vector3 throwVector = this.transform.position - thrownLocation;
+                //rigidbody.angularVelocity 
+                rigidbody.AddForce(throwVector * 200, ForceMode.Force);
+
+               /* this.transform.LookAt(this.transform.position + this.transform.GetComponent<Rigidbody>().velocity);
+                this.transform.forward = this.transform.parent.GetComponent<Rigidbody>().velocity;
+                
                 GetComponent<Rigidbody>().AddForce(GameObject.Find("CenterEyeAnchor").transform.forward * 1f);
-                //this.transform.forward *= 2;
-                WaitUntilPickup();
+                //this.transform.forward *= 2;*/
             }
         }
 
@@ -59,7 +68,14 @@ public class Ball : MonoBehaviour {
         {
             if (_Thrown)
             {
-                
+                timer -= Time.deltaTime;
+                if (timer <= 0f)
+                {
+                    _Thrown = false;
+                    ToggleBounciness(0.95f);
+                    timer = 0.5f;
+                }
+                Debug.Log(timer);
             }
         }
         else
@@ -76,7 +92,15 @@ public class Ball : MonoBehaviour {
             this.transform.position = new Vector3(this.transform.position.x, 0.125f, this.transform.position.z);
         }
 	}
-
+    private void FixedUpdate()
+    {
+        timerPos -= Time.deltaTime;
+        if (timerPos <= 0f)
+        {
+            thrownLocation = this.transform.position;
+            timerPos = 0.5f;
+        }
+    }
     void ToggleBounciness(float b)
     {
             materialProps.material.bounciness = b;      
@@ -88,11 +112,5 @@ public class Ball : MonoBehaviour {
         ToggleBounciness(0f);
         inHand = true;
         this.transform.position = new Vector3(this.transform.parent.position.x, (this.transform.parent.position.y - 0.09f), this.transform.parent.position.z);
-    }
-
-    IEnumerator WaitUntilPickup()
-    {
-        yield return new WaitForSeconds(1.5f);
-        _Thrown = false;
     }
 }

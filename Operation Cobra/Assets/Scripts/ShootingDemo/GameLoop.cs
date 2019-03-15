@@ -14,7 +14,8 @@ public class GameLoop : MonoBehaviour {
     private GameObject playerObject;
     GameObject[] enemyObjects;
     private float playerHealth;
-    public static int _Score;
+    public static int _Score1;
+    public static int _Score2;
     public static bool gameRunning;
     public static bool practiceMode = true;
     public static bool gameWon;
@@ -74,7 +75,7 @@ public class GameLoop : MonoBehaviour {
     void endGame()
     {
         gameRunning = false;
-        if (_Score >= scoreGoal)
+        if (_Score1 >= scoreGoal)
         {
             gameWon = true;
             winGame();

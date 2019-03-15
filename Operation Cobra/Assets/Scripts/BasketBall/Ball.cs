@@ -101,6 +101,17 @@ public class Ball : MonoBehaviour {
             timerPos = 0.5f;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Scorer")
+        {
+            GameLoop._Score1 += 1;
+            Debug.Log(GameLoop._Score1);
+            //other.enabled = false;
+        }
+    }
+
     void ToggleBounciness(float b)
     {
             materialProps.material.bounciness = b;      

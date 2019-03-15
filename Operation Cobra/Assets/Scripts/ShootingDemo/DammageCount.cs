@@ -17,7 +17,7 @@ public class ScoreCount : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        scoreCount = GameLoop._Score;
+        scoreCount = GameLoop._Score1;
         GetComponent<TextMesh>().text = scoreCount.ToString();
         if (scoreCount <= 0)
         {

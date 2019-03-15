@@ -1812,7 +1812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507d62b43009c6b42ac9dd9aea7585a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4947246341501338, guid: 8425265dfc6f97a4299783a540da55ed, type: 2}
   _Health: 10
 --- !u!54 &384120780
 Rigidbody:
@@ -3294,7 +3293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507d62b43009c6b42ac9dd9aea7585a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4947246341501338, guid: 8425265dfc6f97a4299783a540da55ed, type: 2}
   _Health: 10
 --- !u!1 &649725484
 GameObject:
@@ -4132,7 +4130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507d62b43009c6b42ac9dd9aea7585a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4947246341501338, guid: 8425265dfc6f97a4299783a540da55ed, type: 2}
   _Health: 10
 --- !u!54 &992147026
 Rigidbody:
@@ -5285,7 +5282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507d62b43009c6b42ac9dd9aea7585a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4947246341501338, guid: 8425265dfc6f97a4299783a540da55ed, type: 2}
   _Health: 10
 --- !u!1 &1235814635
 GameObject:
@@ -5710,7 +5706,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1349949398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f0506e34d6c8a54aab86935a0e09dd4, type: 3}
+  m_Script: {fileID: 11500000, guid: b206f28fe09652e4bbd7aac59449ceef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   associatedWeapon: {fileID: 0}
@@ -6237,7 +6233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507d62b43009c6b42ac9dd9aea7585a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4947246341501338, guid: 8425265dfc6f97a4299783a540da55ed, type: 2}
   _Health: 10
 --- !u!54 &1601954002
 Rigidbody:
@@ -6660,6 +6655,18 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   impactEffect: {fileID: 198320307722144790, guid: 53b22bf5656b1e048bab5c13445bcedf,
     type: 2}
+--- !u!114 &1725240642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1725240640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507d62b43009c6b42ac9dd9aea7585a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Health: 12
 --- !u!1 &1739386143
 GameObject:
   m_ObjectHideFlags: 0
@@ -6918,7 +6925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507d62b43009c6b42ac9dd9aea7585a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4947246341501338, guid: 8425265dfc6f97a4299783a540da55ed, type: 2}
   _Health: 10
 --- !u!1 &1804410888
 GameObject:
@@ -7239,7 +7245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507d62b43009c6b42ac9dd9aea7585a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
   _Health: 100
 --- !u!4 &2024818920
 Transform:

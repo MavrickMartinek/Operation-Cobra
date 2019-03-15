@@ -119,17 +119,4 @@ public class ArrowManager : MonoBehaviour {
 
         isAttached = true;
     }
-
-    void OnCollisionEnter(Collision col)
-    {
-        if(col.gameObject == currentArrow)
-        {
-            score += 1;
-            //Health target = col.gameObject.GetComponent<Health>();
-            //f (target != null)
-            //{
-                //target.TakeDamage(damage);
-            //}
-        }
-    }
 }

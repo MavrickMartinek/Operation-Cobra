@@ -38,6 +38,8 @@ GameObject:
   - component: {fileID: 4707878324254108}
   - component: {fileID: 95965267052881928}
   - component: {fileID: 114178409940613182}
+  - component: {fileID: 64474618337825304}
+  - component: {fileID: 54012430891161586}
   m_Layer: 0
   m_Name: carrot
   m_TagString: Untagged
@@ -333,6 +335,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1251450529907220}
   m_Mesh: {fileID: 4300002, guid: 5d31271fb2a679b418fbbae38d2a2655, type: 3}
+--- !u!54 &54012430891161586
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1353339470578324}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 1
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &64474618337825304
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1353339470578324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!95 &95965267052881928
 Animator:
   serializedVersion: 3

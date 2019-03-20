@@ -50,7 +50,7 @@ public class Pickup : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Weapon")
         {
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
         }
         if (collision.gameObject.tag == "Weapon" & OVRInput.GetDown(inputHand) & !inHand) //Checks if object touched is weapon.
         {
@@ -58,6 +58,7 @@ public class Pickup : MonoBehaviour {
             _Weapon.transform.parent = transform; //Transfers weapon to hand.
             inHand = true;
             _Weapon.gameObject.GetComponent<Weapon>().inHand = inHand; //Tells the weapon script that it's in-hand.
+            Debug.Log("Pickup");
         }
 
         if(collision.gameObject.tag == "Pickup")

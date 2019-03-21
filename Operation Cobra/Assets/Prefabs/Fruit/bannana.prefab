@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114240551547439034}
   - component: {fileID: 64355199441525792}
   - component: {fileID: 54324309140724696}
+  - component: {fileID: 114359474694802650}
   m_Layer: 0
   m_Name: bannana
   m_TagString: Untagged
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &114359474694802650
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1405136670815888}

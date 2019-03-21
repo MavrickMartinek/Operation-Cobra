@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114243531564787220}
   - component: {fileID: 64994175596886402}
   - component: {fileID: 54454606849054980}
+  - component: {fileID: 114022054522853868}
+  - component: {fileID: 135788771205430266}
   m_Layer: 0
   m_Name: orange
   m_TagString: Untagged
@@ -136,7 +138,7 @@ Animator:
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114022054522853868
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847102857728790}
@@ -159,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!135 &135788771205430266
 SphereCollider:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847102857728790}

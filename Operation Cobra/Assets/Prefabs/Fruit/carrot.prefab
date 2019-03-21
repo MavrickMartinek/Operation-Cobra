@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114178409940613182}
   - component: {fileID: 64474618337825304}
   - component: {fileID: 54012430891161586}
+  - component: {fileID: 114801514017715034}
   m_Layer: 0
   m_Name: carrot
   m_TagString: Untagged
@@ -395,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &114801514017715034
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1353339470578324}

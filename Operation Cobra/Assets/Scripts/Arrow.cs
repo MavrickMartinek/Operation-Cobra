@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour {
 
+    public float score;
+
     private bool isAttached = false;
 
     private bool isFired = false;
@@ -42,6 +44,14 @@ public class Arrow : MonoBehaviour {
         {
             ArrowManager.instance.AttachBowToArrow();
             isAttached = true;
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            score += 1;
         }
     }
 }

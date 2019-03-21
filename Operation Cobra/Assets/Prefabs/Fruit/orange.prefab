@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 23025807111123278}
   - component: {fileID: 95355415761171010}
   - component: {fileID: 114243531564787220}
+  - component: {fileID: 64994175596886402}
+  - component: {fileID: 54454606849054980}
   - component: {fileID: 114022054522853868}
   - component: {fileID: 135788771205430266}
-  - component: {fileID: 54390370510092476}
   m_Layer: 0
   m_Name: orange
   m_TagString: Untagged
@@ -88,7 +89,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847102857728790}
   m_Mesh: {fileID: 4300000, guid: 858c7411a929ecb46b1746291634e200, type: 3}
---- !u!54 &54390370510092476
+--- !u!54 &54454606849054980
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,6 +104,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &64994175596886402
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847102857728790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 858c7411a929ecb46b1746291634e200, type: 3}
 --- !u!95 &95355415761171010
 Animator:
   serializedVersion: 3
@@ -123,7 +138,7 @@ Animator:
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114022054522853868
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847102857728790}
@@ -146,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!135 &135788771205430266
 SphereCollider:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847102857728790}

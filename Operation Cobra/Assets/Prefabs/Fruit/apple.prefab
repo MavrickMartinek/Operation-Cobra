@@ -55,9 +55,10 @@ GameObject:
   - component: {fileID: 4677929571783554}
   - component: {fileID: 95758172859288220}
   - component: {fileID: 114478241239201292}
+  - component: {fileID: 64261016201675284}
+  - component: {fileID: 54874843902469214}
   - component: {fileID: 114666951065940152}
   - component: {fileID: 135170498796284388}
-  - component: {fileID: 54077439545214236}
   m_Layer: 0
   m_Name: apple
   m_TagString: Untagged
@@ -190,7 +191,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772106836456766}
   m_Mesh: {fileID: 4300002, guid: 302ae239b3ec878439dfe7e7fe9134da, type: 3}
---- !u!54 &54077439545214236
+--- !u!54 &54874843902469214
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,6 +206,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &64261016201675284
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903549123032854}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!95 &95758172859288220
 Animator:
   serializedVersion: 3
@@ -236,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &114666951065940152
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1903549123032854}
@@ -248,7 +263,7 @@ MonoBehaviour:
   _Health: 10
 --- !u!135 &135170498796284388
 SphereCollider:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1903549123032854}

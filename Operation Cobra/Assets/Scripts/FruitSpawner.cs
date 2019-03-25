@@ -8,6 +8,8 @@ public class FruitSpawner : MonoBehaviour
     public GameObject[] fruitPre;
     public GameObject destroyingObject;
     private float time = Time.deltaTime;
+    private float timeLeft = 15;
+    private bool status = true;
 
     // Use this for initialization
     void Start()
@@ -33,10 +35,15 @@ public class FruitSpawner : MonoBehaviour
 
     void Update()
     {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            status = false;
+        }
         //if (time > 10)
         //{
         //DestroyImmediate(fruitPre[0], true);
-        Destroy(destroyingObject, 15);
+        //Destroy(destroyingObject, 15);
         //}
     }
 }

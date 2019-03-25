@@ -11,7 +11,7 @@ public class Score : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        victory.SetActive(false);
+        //victory.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -19,9 +19,11 @@ public class Score : MonoBehaviour {
         //Arrow testTwo = test.GetComponent<Arrow>();
         //scoreOutput = testTwo.score;
         GetComponent<TextMesh>().text = scoreOutput.ToString();
-        if(scoreOutput >= 10)
+        if(scoreOutput >= 8)
         {
-            victory.SetActive(true);
+            //victory.SetActive(true);
+            GetComponent<TextMesh>().text = "Victory";
+            //Debug.Log("Victory with the Bow and Arrow");
         }
 	}
 }

@@ -51,7 +51,8 @@ public class Arrow : MonoBehaviour {
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Score.scoreOutput += 1;
+            Score.scoreOutput += 2;
+            GameObject.Destroy(col.gameObject);
         }
     }
 }

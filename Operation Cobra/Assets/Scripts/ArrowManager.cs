@@ -54,7 +54,7 @@ public class ArrowManager : MonoBehaviour {
         if (isAttached)
         {
             float dist = (stringStartPoint.transform.position - rightController.transform.position).magnitude;
-            stringAttachPoint.transform.localPosition = stringStartPoint.transform.localPosition + new Vector3(10f * dist, 0f, 0f);
+            stringAttachPoint.transform.localPosition = stringStartPoint.transform.localPosition + new Vector3(15f * dist, 0f, 0f);
 
             if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
             {

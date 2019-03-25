@@ -572,6 +572,10 @@ Prefab:
       propertyPath: m_Name
       value: Cylinder (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1183068038388750, guid: 717355c6da4c33d40b5198fc2706d02e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 717355c6da4c33d40b5198fc2706d02e, type: 2}
   m_IsPrefabAsset: 0
@@ -1643,6 +1647,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fruitPre:
   - {fileID: 1606794656084028, guid: 6eba608df44e73a469d52fb6d3b21739, type: 2}
+  - {fileID: 1347959961541628, guid: e72498675e2fc454d8413c868ec25ca6, type: 2}
+  - {fileID: 1789828583355558, guid: 06ddfbe32f044524cbdbe653a8b16aa3, type: 2}
   destroyingObject: {fileID: 0}
 --- !u!1 &1840456879
 GameObject:

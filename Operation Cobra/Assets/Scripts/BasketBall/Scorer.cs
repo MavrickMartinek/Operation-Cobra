@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Scorer : MonoBehaviour {
 
+    public int score;
 	// Use this for initialization
 	void Start () {
 		

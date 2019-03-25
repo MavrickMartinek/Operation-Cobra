@@ -16,14 +16,16 @@ public class HealthCounter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         _Health = associatedPlayer.GetComponentInChildren<Health>()._Health;
-        GetComponent<TextMesh>().text = _Health.ToString();
+        
         if (_Health <= 0)
         {
             GetComponent<TextMesh>().color = deadHealthColor;
+            GetComponent<TextMesh>().text = "Down";
         }
         else
         {
             GetComponent<TextMesh>().color = normalHealthColor;
+            GetComponent<TextMesh>().text = _Health.ToString();
         }
     }
 }

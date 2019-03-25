@@ -8,22 +8,13 @@ public class Score : MonoBehaviour {
 
     public GameObject test;
     public GameObject victory;
-
-	// Use this for initialization
-	void Start () {
-        //victory.SetActive(false);
-    }
 	
-	// Update is called once per frame
 	void Update () {
-        //Arrow testTwo = test.GetComponent<Arrow>();
-        //scoreOutput = testTwo.score;
+
         GetComponent<TextMesh>().text = scoreOutput.ToString();
         if(scoreOutput >= 8)
         {
-            //victory.SetActive(true);
             GetComponent<TextMesh>().text = "Victory";
-            //Debug.Log("Victory with the Bow and Arrow");
         }
 	}
 }

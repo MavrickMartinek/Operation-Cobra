@@ -9,13 +9,7 @@ public class Arrow : MonoBehaviour {
     private bool isAttached = false;
 
     private bool isFired = false;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (isFired)
         {

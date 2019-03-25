@@ -37,13 +37,6 @@ public class ArrowManager : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
-	void Start () {
-
-    }
-
-	
-	// Update is called once per frame
 	void Update () {
         AttachArrow();
         pullString();
@@ -74,8 +67,6 @@ public class ArrowManager : MonoBehaviour {
         r.velocity = -currentArrow.transform.forward * 20f * dist;
         r.useGravity = true;
 
-        //currentArrow.GetComponent<Collider>().isTrigger = false;
-
         stringAttachPoint.transform.position = stringStartPoint.transform.position;
 
         currentArrow = null;
@@ -88,34 +79,16 @@ public class ArrowManager : MonoBehaviour {
         {
             currentArrow = Instantiate(arrowPrefab);
             currentArrow.transform.parent = rightController.transform;
-            //arrowPrefab.transform.localScale = new Vector3(0.01f, 0.01f, 0.26f);
             currentArrow.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote);
-            //currentArrow.transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
             currentArrow.transform.localPosition = new Vector3(0f, 0f, 0.342f);
             currentArrow.transform.localRotation = Quaternion.Euler(new Vector3(currentArrow.transform.eulerAngles.x, currentArrow.transform.eulerAngles.y + 180, currentArrow.transform.eulerAngles.z));
-            //currentArrow.transform.localRotation = Quaternion.identity;
         }
     }
-
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Bow")
-        {
-            collision.transform.parent = transform;
-            collision.transform.localScale = transform.localScale;
-            collision.transform.localPosition = transform.localPosition;
-            // collision.rigidbody.detectCollisions = false;
-            //collision.gameObject.GetComponent<>().inHand = true;
-            collision.gameObject.GetComponent<Bow>().inHand = true;
-        }
-    }*/
 
     public void AttachBowToArrow()
     {
         currentArrow.transform.parent = stringAttachPoint.transform;
-        //currentArrow.transform.localRotation = Quaternion.Euler(new Vector3(currentArrow.transform.eulerAngles.x, currentArrow.transform.eulerAngles.y + 180, currentArrow.transform.eulerAngles.z));
-        currentArrow.transform.localPosition = arrowStartPoint.transform.localPosition; //+ new Vector3(-1f, 0f, 0f);
-        //currentArrow.transform.localPosition = stringAttachPoint.transform.localPosition;
+        currentArrow.transform.localPosition = arrowStartPoint.transform.localPosition; 
         currentArrow.transform.rotation = arrowStartPoint.transform.rotation;
 
         isAttached = true;

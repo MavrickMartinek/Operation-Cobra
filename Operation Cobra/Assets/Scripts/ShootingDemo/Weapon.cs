@@ -69,6 +69,7 @@ public class Weapon : MonoBehaviour {
         {
             this._Shot = false;
             this._Anim.SetBool("HasFired", false);
+            //OVRInput.SetControllerVibration(0f, 0f, OVRInput.Controller.RTouch);
         }
 
         //Checks if gun is in hand and trigger is pressed.
@@ -95,6 +96,21 @@ public class Weapon : MonoBehaviour {
         {
             this.currentAmmo = this.maxAmmo;
         }
+
+        if (this.transform.position.y >= 2.25)
+        {
+            this.GetComponent<Rigidbody>().AddForce(Vector3.down, ForceMode.Force);
+        }
+
+        if (this.transform.position.y <= 0.3)
+        {
+            this.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Force);
+        }
+
+        if (this.transform.position.z <= -4.6)
+        {
+            this.GetComponent<Rigidbody>().AddForce(Vector3.forward, ForceMode.Impulse);
+        }
     }
     //Handles shooting.
     void Shoot()
@@ -107,6 +123,7 @@ public class Weapon : MonoBehaviour {
             if (target != null)
             {
                 target.TakeDamage(damage); //Deals damage to target.
+                //OVRInput.SetControllerVibration(0.25f, 1f, OVRInput.Controller.RTouch);
             }
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); //Create hit particle effect. 
             

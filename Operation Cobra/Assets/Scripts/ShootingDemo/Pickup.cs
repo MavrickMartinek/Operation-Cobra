@@ -5,9 +5,10 @@ using UnityEngine;
 public class Pickup : MonoBehaviour {
 
     private bool inHand;
+    private bool canPickup;
     private Collider _Weapon;
     private OVRInput.Button inputHand;
-    private OVRTrackedRemote trackedObj;
+    private OVRInput.Controller controller;
     private bool _Throwing;
     private Rigidbody rigidbody;
     // Use this for initialization
@@ -15,10 +16,12 @@ public class Pickup : MonoBehaviour {
         if (this.name == "HandRight")
         {
             inputHand = OVRInput.Button.SecondaryHandTrigger;
+            controller = OVRInput.Controller.RTouch;
         }
         else if (this.name == "HandLeft")
         {
             inputHand = OVRInput.Button.PrimaryHandTrigger;
+            controller = OVRInput.Controller.LTouch;
         }
         inHand = _Weapon.gameObject.GetComponent<Weapon>().inHand;
     }
@@ -26,6 +29,15 @@ public class Pickup : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (OVRInput.GetDown(inputHand) & !inHand & canPickup) //Checks if object touched is weapon.
+        {
+   
+            _Weapon.transform.parent = transform; //Transfers weapon to hand.
+            inHand = true;
+            _Weapon.gameObject.GetComponent<Weapon>().inHand = inHand; //Tells the weapon script that it's in-hand.
+            Debug.Log("Pickup");
+        }
+
         //Drop weapon
         if ((OVRInput.GetUp(inputHand) & !OVRInput.GetDown(inputHand) & inHand) | (!GameLoop.gameRunning & !GameLoop.gameWon & !GameLoop.practiceMode))
         {
@@ -52,13 +64,10 @@ public class Pickup : MonoBehaviour {
         {
             //Debug.Log("Collision");
         }
-        if (collision.gameObject.tag == "Weapon" & OVRInput.GetDown(inputHand) & !inHand) //Checks if object touched is weapon.
+        if (collision.gameObject.tag == "Weapon") //Checks if object touched is weapon.
         {
-            _Weapon = collision; //Sets the collision as the weapon.
-            _Weapon.transform.parent = transform; //Transfers weapon to hand.
-            inHand = true;
-            _Weapon.gameObject.GetComponent<Weapon>().inHand = inHand; //Tells the weapon script that it's in-hand.
-            Debug.Log("Pickup");
+            canPickup = true;
+            _Weapon = collision;
         }
 
         if(collision.gameObject.tag == "Pickup")
@@ -71,14 +80,23 @@ public class Pickup : MonoBehaviour {
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        _Weapon = null;
+        canPickup = false;
+    }
+
     private void dropObject()
     {
         rigidbody = _Weapon.GetComponent<Rigidbody>();
         _Weapon.transform.parent = null;
-        _Throwing = true;
+        //_Throwing = true;
         _Weapon.gameObject.GetComponent<Weapon>().inHand = false;
         inHand = false;
-        _Weapon.transform.position += new Vector3(0.05f, 0.05f, 0.05f);
+        //_Weapon.transform.position += new Vector3(0.05f, 0.05f, 0.05f);
+        rigidbody.isKinematic = false;
+        Transform trackingSpace = GameObject.Find("TrackingSpace").transform;
+        rigidbody.velocity = trackingSpace.rotation * OVRInput.GetLocalControllerVelocity(controller);
         _Weapon = null;
         Debug.Log("Weapon dropped");
         
@@ -96,5 +114,10 @@ public class Pickup : MonoBehaviour {
         }
     }
 
+    Quaternion fixThrowRotation()
+    {
+
+        return new Quaternion();
+    }
 }
 

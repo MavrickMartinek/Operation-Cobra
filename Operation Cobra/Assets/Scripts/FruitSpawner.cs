@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FruitSpawner : MonoBehaviour {
+public class FruitSpawner : MonoBehaviour
+{
 
     public GameObject[] fruitPre;
+    public GameObject destroyingObject;
+    private float time = Time.deltaTime;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         StartCoroutine(SpawnFruit());
-	}
+    }
 
     IEnumerator SpawnFruit()
     {
-        while(true)
+        while (true)
         {
             GameObject go = Instantiate(fruitPre[Random.Range(0, fruitPre.Length)]);
             Rigidbody temp = go.GetComponent<Rigidbody>();
@@ -23,8 +27,16 @@ public class FruitSpawner : MonoBehaviour {
             Vector3 pos = transform.position;
             pos.x += Random.Range(-1f, 1f);
             go.transform.position = pos;
-            yield return new WaitForSeconds(1f) ;
+            yield return new WaitForSeconds(1f);
         }
     }
-	
+
+    void Update()
+    {
+        //if (time > 10)
+        //{
+        //DestroyImmediate(fruitPre[0], true);
+        Destroy(destroyingObject, 15);
+        //}
+    }
 }

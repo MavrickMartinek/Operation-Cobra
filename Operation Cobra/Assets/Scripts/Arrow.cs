@@ -51,7 +51,7 @@ public class Arrow : MonoBehaviour {
     {
         if (col.gameObject.tag == "Enemy")
         {
-            score += 1;
+            Score.scoreOutput += 1;
         }
     }
 }

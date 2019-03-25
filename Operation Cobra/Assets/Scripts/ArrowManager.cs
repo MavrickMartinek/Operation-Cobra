@@ -54,7 +54,7 @@ public class ArrowManager : MonoBehaviour {
         if (isAttached)
         {
             float dist = (stringStartPoint.transform.position - rightController.transform.position).magnitude;
-            stringAttachPoint.transform.localPosition = stringStartPoint.transform.localPosition + new Vector3(5f * dist, 0f, 0f);
+            stringAttachPoint.transform.localPosition = stringStartPoint.transform.localPosition + new Vector3(10f * dist, 0f, 0f);
 
             if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
             {
@@ -114,7 +114,8 @@ public class ArrowManager : MonoBehaviour {
     {
         currentArrow.transform.parent = stringAttachPoint.transform;
         //currentArrow.transform.localRotation = Quaternion.Euler(new Vector3(currentArrow.transform.eulerAngles.x, currentArrow.transform.eulerAngles.y + 180, currentArrow.transform.eulerAngles.z));
-        currentArrow.transform.localPosition = arrowStartPoint.transform.localPosition;
+        currentArrow.transform.localPosition = arrowStartPoint.transform.localPosition; //+ new Vector3(-1f, 0f, 0f);
+        //currentArrow.transform.localPosition = stringAttachPoint.transform.localPosition;
         currentArrow.transform.rotation = arrowStartPoint.transform.rotation;
 
         isAttached = true;

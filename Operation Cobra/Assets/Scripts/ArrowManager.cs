@@ -82,7 +82,8 @@ public class ArrowManager : MonoBehaviour {
             currentArrow.transform.position = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTrackedRemote);
             currentArrow.transform.localPosition = new Vector3(0f, 0f, 0.342f);
             currentArrow.transform.localRotation = Quaternion.Euler(new Vector3(currentArrow.transform.eulerAngles.x, currentArrow.transform.eulerAngles.y + 180, currentArrow.transform.eulerAngles.z));
-        }
+			currentArrow.GetComponent<Rigidbody>().isKinematic = true;
+		}
     }
 
     public void AttachBowToArrow()
@@ -90,7 +91,7 @@ public class ArrowManager : MonoBehaviour {
         currentArrow.transform.parent = stringAttachPoint.transform;
         currentArrow.transform.localPosition = arrowStartPoint.transform.localPosition; 
         currentArrow.transform.rotation = arrowStartPoint.transform.rotation;
-
+        currentArrow.GetComponent<Rigidbody>().isKinematic = false;
         isAttached = true;
     }
 }

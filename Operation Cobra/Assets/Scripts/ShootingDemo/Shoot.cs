@@ -6,7 +6,7 @@ public class Shoot : MonoBehaviour {
 
     public float damage;
     public float range;
-
+    public string targetType;
     public GameObject bulletExit;
     public ParticleSystem muzzleFlash;
     public ParticleSystem impactEffect;
@@ -42,6 +42,7 @@ public class Shoot : MonoBehaviour {
             if (target != null)
             {
                 target.TakeDamage(damage);
+                targetType = hit.transform.tag;
             }
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)); //Create hit particle effect. 
         }

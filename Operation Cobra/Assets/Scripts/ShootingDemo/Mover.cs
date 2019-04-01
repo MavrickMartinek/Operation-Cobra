@@ -11,38 +11,38 @@ public class Mover : MonoBehaviour {
     private float currentLerpTime = 0;
     // Use this for initialization
     void Start () {
-        startPostition = this.transform.position;
+        this.startPostition = this.transform.position;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        float Perc = currentLerpTime / lerpTime;
+        float Perc = this.currentLerpTime / this.lerpTime;
         if (!loop)
         {
 
             //t += Time.deltaTime / timeToReach;
             //this.transform.position = Vector3.Lerp(startPostition, jumpHeight, 2 * Time.deltaTime);
 
-            if (currentLerpTime >= lerpTime)
+            if (this.currentLerpTime >= this.lerpTime)
             {
-                currentLerpTime = 0;
-                loop = true;
+                this.currentLerpTime = 0;
+                this.loop = true;
 
             }
-            currentLerpTime += Time.deltaTime;
-            this.transform.position = Vector3.Lerp(startPostition, endPosition, Perc);
+            this.currentLerpTime += Time.deltaTime;
+            this.transform.position = Vector3.Lerp(this.startPostition, this.endPosition, Perc);
 
         }
-        else if (loop)
+        else if (this.loop)
         {
-            if (currentLerpTime >= lerpTime)
+            if (this.currentLerpTime >= this.lerpTime)
             {
-                currentLerpTime = 0;
-                loop = false;
+                this.currentLerpTime = 0;
+                this.loop = false;
 
             }
-            currentLerpTime += Time.deltaTime;
-            this.transform.position = Vector3.Lerp(endPosition, startPostition, Perc);
+            this.currentLerpTime += Time.deltaTime;
+            this.transform.position = Vector3.Lerp(this.endPosition, this.startPostition, Perc);
         }
     }
 }

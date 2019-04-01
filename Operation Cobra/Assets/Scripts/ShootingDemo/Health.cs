@@ -6,6 +6,7 @@ public class Health : MonoBehaviour {
 
     //public Transform prefab;
     public float _Health;
+    public float maxHealth;
 
     public void TakeDamage(float ammount)
     {
@@ -26,7 +27,7 @@ public class Health : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-		
+        maxHealth = _Health;
 	}
 	
 	// Update is called once per frame

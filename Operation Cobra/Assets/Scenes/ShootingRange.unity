@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!54 &62927985
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -690,6 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!54 &87369532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1194,7 +1196,7 @@ GameObject:
   - component: {fileID: 180823022}
   m_Layer: 0
   m_Name: OVRPlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1363,6 +1365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!54 &198176008
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1770,6 +1773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 4
+  maxHealth: 0
 --- !u!1 &245961902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,6 +2275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!54 &384120780
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3770,6 +3775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!1 &649725484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4196,8 +4202,19 @@ Prefab:
         type: 2}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 180823016}
-    m_RemovedComponents: []
+      objectReference: {fileID: 2024818917}
+    - target: {fileID: 65596100431776390, guid: ddf13f67c31d4a6439a88603fa17864b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114873738267842764, guid: ddf13f67c31d4a6439a88603fa17864b,
+        type: 2}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114038695465088936, guid: ddf13f67c31d4a6439a88603fa17864b, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: ddf13f67c31d4a6439a88603fa17864b, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &795192236
@@ -4232,6 +4249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!54 &795192238
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4347,6 +4365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!54 &803262428
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4884,6 +4903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!54 &992147026
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5709,6 +5729,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1089921085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1079702412627492, guid: ddf13f67c31d4a6439a88603fa17864b,
+    type: 2}
+  m_PrefabInternal: {fileID: 783338455}
+--- !u!114 &1089921086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1089921085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507d62b43009c6b42ac9dd9aea7585a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Health: 20
+  maxHealth: 0
 --- !u!1 &1106208356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6036,6 +6074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!1 &1235814635
 GameObject:
   m_ObjectHideFlags: 0
@@ -7033,6 +7072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!54 &1601954002
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7628,6 +7668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!1 &1804410888
 GameObject:
   m_ObjectHideFlags: 0
@@ -7979,6 +8020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 10
+  maxHealth: 0
 --- !u!54 &1997750360
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8109,6 +8151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Health: 100
+  maxHealth: 0
 --- !u!4 &2024818920
 Transform:
   m_ObjectHideFlags: 0

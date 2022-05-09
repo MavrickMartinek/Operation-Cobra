@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scorer : MonoBehaviour {
 
-    public int score;
+    public int score; //Holds score value for net.
 	// Use this for initialization
 	void Start () {
 		

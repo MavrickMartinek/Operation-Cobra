@@ -34,12 +34,12 @@ public class Shoot : MonoBehaviour {
 
     void Fire()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(bulletExit.transform.position, bulletExit.transform.forward, out hit, range))
+        RaycastHit hit; 
+        if (Physics.Raycast(bulletExit.transform.position, bulletExit.transform.forward, out hit, range)) //Checks if ray hits any object.
         {
            // Debug.Log(hit.transform.name);
-            Health target = hit.transform.GetComponent<Health>();
-            if (target != null)
+            Health target = hit.transform.GetComponent<Health>(); //Get health from target.
+            if (target != null) //Check if the target is not null.
             {
                 target.TakeDamage(damage);
                 targetType = hit.transform.tag;

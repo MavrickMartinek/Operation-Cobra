@@ -16,7 +16,7 @@ public class Count : MonoBehaviour {
     {
         _Score1 = GameLoop._Score1;
         _Score2 = GameLoop._Score2;
-        GetComponent<TextMesh>().text = _Score1.ToString() + ":" + _Score2.ToString();
+        GetComponent<TextMesh>().text = _Score1.ToString() + ":" + _Score2.ToString(); //Outputs scores for both teams onto player wrist.
     }
 	// Update is called once per frame
 	void Update () {

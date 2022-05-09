@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+ * Author: Mavrick Martinek
+ * Purpose: Controls logic for picking up and dropping weapons.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

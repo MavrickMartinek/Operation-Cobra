@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * Author: Mavrick Martinek
+ * Purpose: Controls AI behavior.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,41 +35,41 @@ public class AIEnemy : MonoBehaviour {
         float angleToPlayer = (Vector3.Angle(screenPoint, this.transform.forward));
         float distanceToPlayer = Player.transform.position.magnitude - this.transform.position.magnitude;
         // bool inFov = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 5 && screenPoint.y > 0 && screenPoint.y < 5;
-        if (angleToPlayer >= -70 && angleToPlayer <= 70 && distanceToPlayer < 1f)
+        if (angleToPlayer >= -70 && angleToPlayer <= 70 && distanceToPlayer < 1f) //Checks if player is in the AI's field of vision.
         {
          
             Debug.Log("Player Visible");
             Debug.Log("Distance: " + distanceToPlayer);
             currentLerpTime = 0f;
-            alert = true;
-            spotted = true;
+            alert = true; //AI is now alert.
+            spotted = true; //AI spotted the player
    
         }
-        else
+        else //If player no longer is the AI's field of vision.
         {
-            spotted = false;
-            this.GetComponentInChildren<Shoot>().enabled = false;
+            spotted = false;//AI no longer sees player.
+            this.GetComponentInChildren<Shoot>().enabled = false;//AI stops shooting.
             lerpTime = GetLerpTime();
         }
 
-        if (spotted)
+        if (spotted)//Checks if AI spotted player.
         {
             AlertMode();
         }
-        else if (alert && !spotted)
+        else if (alert && !spotted)//Checks if AI can't see player but is on alert.
         {
-            if (!isMoving)
+            if (!isMoving)//Checks if the AI is not moving.
             {
-                MoveToLastPosition();
+                MoveToLastPosition();//AI will move to where it last saw the player.
             }
-            else if(isMoving)
+            else if(isMoving) //Checks if the AI is supposed to be moving.
             {
-                Rotate180();
+                Rotate180(); //AI will rotate itself.
             }
         }
         else if (!alert && !spotted)
         {
-            if (this.GetComponent<Health>()._Health < this.GetComponent<Health>().maxHealth)
+            if (this.GetComponent<Health>()._Health < this.GetComponent<Health>().maxHealth) //Checks if AI has less than max health.
             {
                 alert = true;
                 isMoving = true;
@@ -73,27 +78,27 @@ public class AIEnemy : MonoBehaviour {
 
 	}
 
-    void AlertMode()
+    void AlertMode()//Function called when AI is alerted to player.
     {
         /* lookRotation = Quaternion.LookRotation(Player.transform.position - this.transform.position);
          strength = Mathf.Min(strength * Time.deltaTime, 1);
          this.transform.rotation = Quaternion.Lerp(this.transform.rotation, lookRotation, strength);
          Debug.Log("Alert"); */
         
-        this.GetComponentInChildren<Shoot>().enabled = true;
-        this.transform.LookAt(Player.transform);
+        this.GetComponentInChildren<Shoot>().enabled = true;//Shoot script is called; AI starts shooting.
+        this.transform.LookAt(Player.transform);//AI looks at player.
         this.transform.rotation = Quaternion.Euler(0f, this.transform.rotation.eulerAngles.y, 0f);
-        lastKnownPosition = Player.transform.position;
+        lastKnownPosition = Player.transform.position;//AI keeps the player's position in mind.
         isMoving = false;
 
-        if(this.GetComponentInChildren<Shoot>().targetType != "MainCamera" || this.GetComponentInChildren<Shoot>().targetType != "Player")
+        if(this.GetComponentInChildren<Shoot>().targetType != "MainCamera" || this.GetComponentInChildren<Shoot>().targetType != "Player") //Checks if AI is hitting something other than player.
         {
             this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, (this.transform.localPosition + new Vector3(2, 0, 0)), Perc);
         }
 
     }
 
-    void MoveToLastPosition()
+    void MoveToLastPosition() //Function called to move AI to last know player position.
     {
         if (this.transform.position.x != lastKnownPosition.x && this.transform.position.z != lastKnownPosition.z)
         {
@@ -102,16 +107,16 @@ public class AIEnemy : MonoBehaviour {
                 isMoving = true;
                 currentLerpTime = 0f;
             }
-            this.GetComponentInChildren<Shoot>().enabled = false;
-            this.transform.position = Vector3.Lerp(this.transform.position, lastKnownPosition, Perc);
-            this.transform.position = new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);
+            this.GetComponentInChildren<Shoot>().enabled = false; //Stops shooting
+            this.transform.position = Vector3.Lerp(this.transform.position, lastKnownPosition, Perc);//Moves AI to last known player position.
+            this.transform.position = new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);//Keeps AI in correct height.
             this.currentLerpTime += Time.deltaTime;
             Debug.Log("Lerping from " + this.transform.position + " to: " + lastKnownPosition + " step: " + Perc);
             
         }
      
     }
-    void Rotate180()
+    void Rotate180()//Function called to spin AI around.
     {
         lerpTime = 1f;
         if (this.currentLerpTime > this.lerpTime)

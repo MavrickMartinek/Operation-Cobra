@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿/*
+ * Author: Mavrick Martinek
+ * Purpose: Handles the AI's shooting ability.
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour {
 
-    public float damage;
-    public float range;
+    public float damage; //Damage the weapon deals.
+    public float range; //How far the weapon can fire.
     public string targetType;
     public GameObject bulletExit;
     public ParticleSystem muzzleFlash;
